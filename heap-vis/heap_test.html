@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>heap tests</title>
+
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
+    <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+    <script src="./heap-vis.js"></script>
+
+    <script>
+        function arrayEquals(left, right, message) {
+            function _equals(left, right) {
+                if (left.length != right.length) return false;
+                for (var i = 0; i < left.length; i++)  {
+                    if (left[i] != right[i]) return false;
+                }
+                return true;
+            }
+            
+            message = message || "arrayEquals";
+            ok(_equals(left, right),
+               message + ": " + left.toString() + " == " + right.toString());
+        }
+
+        test("reheap", function() {
+
+            var heap = [1, 1, 1];
+            reheap(heap);
+            arrayEquals(heap, [1, 1, 1]);
+
+            heap[0] = 0;
+            reheap(heap);
+            arrayEquals(heap, [0, 1, 1]);
+
+            heap[0] = 2;
+            reheap(heap);
+            arrayEquals(heap, [1, 2, 1]);
+
+            heap[0] = 3;
+            reheap(heap);
+            arrayEquals(heap, [1, 2, 3]);
+
+            heap[0] = 4;
+            reheap(heap);
+            arrayEquals(heap, [2, 4, 3]);
+        });
+    </script>
+</head>
+<body>
+<div id="qunit"></div>
+</body>
+</html>
