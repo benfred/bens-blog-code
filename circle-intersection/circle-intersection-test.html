@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>circle-intersection.js tests</title>
+
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
+    <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+    <script src="./circle-intersection.js"></script>
+
+    <script>
+        function generateRandomCircles() {
+            var count = 1 + Math.ceil(7 * Math.random()),
+                range = {x : 0,  y : 0, height : 1, width : 1},
+                output = []
+
+            for (var i = 0; i < count; ++i ) { 
+                var p = circleIntersection.randomPoint(range);
+                p.radius = Math.random() + .001;
+                output.push(p);
+            }
+
+            return output;
+        }
+
+        test("randomCircleAreas", function() {
+            for (var i = 0; i < 10000; ++i) {
+                var circles = generateRandomCircles();
+                var area = circleIntersection.intersectionArea(circles),
+                    estimate = circleIntersection.quadtreeEstimate(circles, 7),
+                    error = Math.abs(area - estimate[0]);
+
+                ok(error <= estimate[1],
+                  "error " + error + " circles + " + JSON.stringify(circles));
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="qunit"></div>
+</body>
+</html>
