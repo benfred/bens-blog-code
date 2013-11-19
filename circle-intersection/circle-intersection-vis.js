@@ -1,53 +1,3 @@
-
-function subdivideRectangle(current, output) {
-    var w = current.width/2,
-        h = current.height/2,
-        level = current.level || 0;
-
-    output({ x: current.x,
-             y : current.y,
-             width : w,
-             height: h,
-             level : level + 1});
-
-    output({ x: current.x + w,
-             y : current.y,
-             width : w,
-             height: h,
-             level : level + 1});
-
-    output({ x: current.x,
-             y : current.y + h,
-             width : w,
-             height: h,
-             level : level + 1});
-
-    output({ x: current.x + w,
-             y : current.y + h,
-             width : w,
-             height: h,
-             level : level + 1});
-}
-
-
-function rectangleContained(current, circles) {
-    var x = current.x, y = current.y, w = current.width, h = current.height;
-
-    var pointValues = [
-        circleIntersection.containedInCircles({x:x, y:y} , circles),
-        circleIntersection.containedInCircles({x:x+w, y:y} , circles),
-        circleIntersection.containedInCircles({x:x, y:y+h} , circles),
-        circleIntersection.containedInCircles({x:x+w, y:y+h}, circles)];
-
-    for (var i = 1; i < pointValues.length; ++i) {
-        if (pointValues[i] !== pointValues[0]) {
-            return 0;
-        }
-    }
-
-    return pointValues[0] ? 1 : -1;
-}
-
 /// This is all basically a horrible mess of poorly written javascript
 /// (thats not really worth my time in fixing up since its for a one-off blog
 /// post)
@@ -273,7 +223,7 @@ function createCircleIntersectionVis(element,
                 }
 
                 var h = current.height, w = current.width;
-                var inOrOut = rectangleContained(current, active);
+                var inOrOut = circleIntersection.rectangleContained(current, active);
                 if (level === 0) {
                     inOrOut = 0;
                 }
@@ -300,7 +250,8 @@ function createCircleIntersectionVis(element,
                     .attr("stroke-opacity", strokeOpacity)
                     .attr("fill-opacity", 0.0);
                 if (!inOrOut && (level <= maxLevels)) {
-                    subdivideRectangle(current, function(v) { quadQueue.push(v); });
+                    circleIntersection.subdivideRectangle(current, 
+                        function(v) { quadQueue.push(v); });
                 }       
 
                 examined += 1;
