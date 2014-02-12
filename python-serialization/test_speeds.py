@@ -74,11 +74,11 @@ def runTests():
     print "generated data, size lower bound = ", minSize
 
     methods = {
-               'pickle' : (pickle.dumps, pickle.loads, data),
-               'cpickle' : (cPickle.dumps, cPickle.loads, data),
-               'json' : (json.dumps, json.loads, jsondata),
-               'msgpack' : (msgpack.packb, msgpack.unpackb, jsondata),
-               'thrift' : (thriftDumps, thriftLoads, thriftdata),
+               'Pickle' : (pickle.dumps, pickle.loads, data),
+               'cPickle' : (cPickle.dumps, cPickle.loads, data),
+               'JSON' : (json.dumps, json.loads, jsondata),
+               'MessagePack' : (msgpack.packb, msgpack.unpackb, jsondata),
+               'Thrift' : (thriftDumps, thriftLoads, thriftdata),
                }
      
     output = []

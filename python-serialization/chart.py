@@ -29,7 +29,7 @@ def speedChart(data):
 
     pyplot.ylabel('Rate (items/second)')
     pyplot.xticks(index + BAR_WIDTH, [d['method'] for d in data])
-    pyplot.legend()
+    pyplot.legend(loc='upper left')
 
     pyplot.tight_layout()
     pyplot.show()
