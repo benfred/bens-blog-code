@@ -10,8 +10,7 @@ OPACITY = 0.4
 
 def speedChart(data):
     fig, ax = pyplot.subplots()
-    groups = len(data)
-    index = numpy.arange(groups)
+    index = numpy.arange(len(data))
 
     rects1 = pyplot.bar(index, 
                         [d['packRate'] for d in data], 
@@ -35,10 +34,8 @@ def speedChart(data):
     pyplot.show()
 
 def sizeChart(data):
-    groups = len(data)
-
     fig, ax = pyplot.subplots()
-    index = numpy.arange(groups)
+    index = numpy.arange(len(data))
     rects1 = pyplot.bar(index, 
                         [d['averageSize'] for d in data], 
                         BAR_WIDTH,
