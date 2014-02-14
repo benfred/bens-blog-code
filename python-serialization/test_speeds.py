@@ -10,6 +10,7 @@ import time
 import numpy
 import gc
 import os
+import functools
 
 import json
 
@@ -36,11 +37,20 @@ class Tweet(object):
         self.timestamp = timestamp
         self.location = location
 
-def jsonableTweet(self):
-        return {'text' : self.text,
-                'userId' : self.userId,
-                'timestamp' : self.timestamp,
-                'location' : self.location}
+    def toJSON(self):
+        return json.dumps(self.__dict__)
+
+    @classmethod
+    def fromJSON(cls, data):
+        return cls(**json.loads(data))
+
+    def toMessagePack(self):
+        return msgpack.packb(self.__dict__)
+
+    @classmethod
+    def fromMessagePack(cls, data):
+        return cls(**msgpack.unpackb(data))
+
 
 def thriftDumps(tweet, ProtocolClass=TBinaryProtocolAccelerated):
     buf = TMemoryBuffer()
@@ -67,7 +77,6 @@ def runTests():
                     randomString(random.randint(10, 30)))
                 for x in xrange(100000)]
 
-    jsondata = [jsonableTweet(d) for d in data]
     thriftdata = [ThriftTweet(d.text, d.userId, d.timestamp, d.location) for d in data]
 
     minSize = numpy.average([len(d.text) + len(d.userId) + len(d.location) + 8 for d in data])
@@ -76,15 +85,20 @@ def runTests():
     methods = {
                'Pickle' : (pickle.dumps, pickle.loads, data),
                'cPickle' : (cPickle.dumps, cPickle.loads, data),
-               'JSON' : (json.dumps, json.loads, jsondata),
-               'MessagePack' : (msgpack.packb, msgpack.unpackb, jsondata),
+               'cPickle' : (cPickle.dumps, cPickle.loads, data),
+               'cPickle\n(Highest Protocol)' : (
+                    functools.partial(cPickle.dumps, protocol=cPickle.HIGHEST_PROTOCOL),
+                    cPickle.loads, data),
+               'JSON' : (lambda d: d.toJSON(), Tweet.fromJSON, data),
+               'MessagePack' : (lambda d: d.toMessagePack(),
+                                Tweet.fromMessagePack, data),
                'Thrift' : (thriftDumps, thriftLoads, thriftdata),
                }
-     
+
     output = []
     for method, (packer, unpacker, inputData) in methods.items():
         gc.collect()
-    
+
         startPack = time.time()
         packed = [packer(d) for d in inputData]
 
@@ -106,7 +120,7 @@ def runTests():
         print "packTime", packTime, "s - ", len(inputData)/packTime, "items/s"
         print "unpackTime", unpackTime, "s - ", len(inputData)/unpackTime, "items/s"
         print "size", averageSize
-        print 
+        print
         print
 
     output.sort(key=lambda x: x['packRate'])
