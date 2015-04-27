@@ -1,0 +1,11 @@
+{
+  "name": "distancemetrics",
+  "version": "0.1.0",
+  "author": "Ben Frederickson",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-uglify": "~0.9.1",
+    "grunt-contrib-concat": "~0.5.1"
+  }
+}
