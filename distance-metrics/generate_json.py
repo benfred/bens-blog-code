@@ -158,7 +158,7 @@ def get_other_artists(data, artist):
 
 
 if __name__ == "__main__":
-    import perfomance_hacks
+    import performance_hacks
     performance_hacks.disable_matrix_checks()
     data = musicdata.MusicData("./usersha1-artmbid-artname-plays.tsv")
     generate_json(data)

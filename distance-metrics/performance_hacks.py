@@ -17,7 +17,7 @@ def disable_matrix_checks():
 
 
 def reenable_matrix_checks():
-    """ reverts perfomance hacks by disable_matrix_checks """
+    """ reverts performance hacks by disable_matrix_checks """
     cs_matrix = scipy.sparse.compressed._cs_matrix
     cs_matrix.check_format = cs_matrix.check_format_backup
 

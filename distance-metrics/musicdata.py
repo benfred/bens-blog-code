@@ -2,7 +2,7 @@ from collections import defaultdict
 import os
 
 import pandas
-from numpy import zeros, log
+from numpy import zeros, log, array
 from scipy.sparse import csr_matrix
 
 
@@ -25,7 +25,7 @@ class MusicData(object):
 
         # get a sparse vector for each artist
         self.artists = dict((artist,
-                             csr_matrix((group['plays'],
+                             csr_matrix((array(group['plays']),
                                          (zeros(len(group)),
                                          group['userid'])),
                                         shape=[1, len(userids)]))

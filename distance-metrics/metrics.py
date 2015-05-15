@@ -3,10 +3,17 @@
 
 import math
 
-from numpy import ones, array, dot, sqrt
+from numpy import ones, array, sqrt
 from scipy.sparse import csr_matrix
 
-from perfomance_hacks import store_result, convert_csc
+from performance_hacks import store_result, convert_csc
+
+# HACK: so, apparently using numpy.dot for sparse matrices doesn't actually
+# work anymore (did on the older version of numpy/scipy I was using originally)
+# rather than change the post and all the code, just hack around this by
+# setting 'dot' to be the csr  version. in general this is pretty 
+# terrible (should be doing a.dot(b) instead of dot(a, b))
+dot = csr_matrix.dot
 
 
 SMOOTHING = 20.
