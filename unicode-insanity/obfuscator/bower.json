@@ -1,0 +1,27 @@
+{
+  "name": "unicode-obfuscator",
+  "version": "0.0.1",
+  "homepage": "https://github.com/benfred/bens-blog-code",
+  "authors": [
+    "Ben Frederickson <github@benfrederickson.com>"
+  ],
+  "description": "creates unicode strings that hide what they display",
+  "main": "unicode-obfuscator.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "unicode",
+    "obfuscator"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "esrever": "git://github.com/mathiasbynens/esrever.git#~0.2.0",
+    "he": "git://github.com/mathiasbynens/he.git#~0.5.0"
+  }
+}

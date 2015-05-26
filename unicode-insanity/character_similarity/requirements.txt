@@ -1,0 +1,1 @@
+-e git://github.com/rougier/freetype-py.git@46ce754169ac58979848c856d80a875f5d2fd41a#egg=freetype_py-master

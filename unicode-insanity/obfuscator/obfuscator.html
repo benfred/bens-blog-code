@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Unicode Obfuscator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ben Frederickson">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.8/c3.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class="col-sm-8 col-sm-offset-2">
+    <p>
+
+<div class="well" style="background:000">
+    <h4 style="margin-top:0px">Unicode Obfuscator</h4>
+    <hr>
+    <form >
+        <div class="form-group">
+            <label for="textInput">Input Text</label>
+            <input type="text" class="form-control" id="textInput"
+            placeholder="Enter Text here">
+        </div>
+        <div class="form-group">
+            <label for="encodedOutput">HTML Encoded Output</label>
+            <textarea id="encoded" disabled rows="3" class="form-control disabled" id="encodedOutput"
+            style="background:#FAFAFA">
+                </textarea>
+        </div>
+        <div class="form-group">
+            <label for="textOutput">Output Text</label>
+            <input id="textOutput" disabled type="text" class="form-control"
+            style="background:#FAFAFA">
+        </div>
+    </form>
+</div>
+
+</div></div></div>
+
+</body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="./bower_components/he/he.js"></script>
+    <script src="./bower_components/esrever/esrever.js"></script>
+    <script src="./obfuscator.js"></script>
+</html>
