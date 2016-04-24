@@ -56,6 +56,10 @@ def clean_dataset(filename):
                 print "non integer play count", i
                 continue
 
+            if tokens[2] == '""':
+                print "invalid artist id", tokens[2]
+                continue
+
             # some lines contain carriage returns (without newlines), which
             # randomly messes pandas up
             line = line.replace('\r', '')
