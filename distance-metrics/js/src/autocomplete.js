@@ -1,4 +1,5 @@
 var preloadedData = preloadedData || {};
+var minAutocompleteUsers = minAutocompleteUsers || 10;
 
 var AUTOCOMPLETE_HOST = 'http://musicautocomplete.benfrederickson.com.s3-website-us-east-1.amazonaws.com/';
 
@@ -38,7 +39,12 @@ function bindArtistTypeahead(selector, callback) {
     {                                
         name: 'artists',
         displayKey: 'value',
-        source: artists.ttAdapter(),
+//        source: artists.ttAdapter(),
+        source: function(query, cb) {
+            artists.get(query, function(suggestions) {
+                cb(suggestions.filter(function(x) {return x.users > minAutocompleteUsers;}));
+            });
+        },
         autoselect: true,
     });
 }

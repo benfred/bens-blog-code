@@ -7,7 +7,9 @@ function getDisplayMetric(metricName) {
     var displayMetrics = {
         'tfidf' : 'TFIDF',
         'smoothed_cosine' : 'Smoothed Cosine',
-        'bm25' : 'BM25'
+        'bm25' : 'BM25',
+        'lsi' : 'LSA',
+        'implicitals' : 'Implicit ALS'
     };
     var displayMetric = displayMetrics[metricName];
     if (displayMetric == null) {
@@ -196,48 +198,3 @@ function similarArtistList(selector,
         });
     };
 };
-
-var setList = new similarArtistList(".overlaplist",
-                                   "Kanye West",
-                                    "overlap");
-
-$('.overlaplist .overlap').on('click', function() {
-    $(".set-method").text("Overlap")
-    setList.setMetric('overlap');
-});
-
-$('.overlaplist .jaccard').on('click', function() {
-    $(".set-method").text("Jaccard")
-    setList.setMetric('jaccard');
-});
-
-$('.overlaplist .ochiai').on('click', function() {
-    $(".set-method").text("Ochiai")
-    setList.setMetric('ochiai');
-});
-
-var cosineList = new similarArtistList(".cosinelist",
-                                       "Radiohead",
-                                       "cosine",
-                                       true);
-
-$('.cosinelist .cosine').on('click', function() {
-    $(".cosine-method").text("Cosine")
-    cosineList.setMetric('cosine');
-});
-
-$('.cosinelist .tfidf').on('click', function() {
-    $(".cosine-method").text("TFIDF")
-    cosineList.setMetric('tfidf');
-});
-
-$('.cosinelist .smoothed_cosine').on('click', function() {
-    $(".cosine-method").text("Smoothed Cosine")
-    cosineList.setMetric('smoothed_cosine');
-});
-$('.cosinelist .bm25').on('click', function() {
-    $(".cosine-method").text("BM25")
-    cosineList.setMetric('bm25');
-});
-
-$('.twitter-typeahead').attr("style", "position: relative");

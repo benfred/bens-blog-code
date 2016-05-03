@@ -140,10 +140,12 @@ function slopeGraph() {
     return chart;
 }
 // slopegraph
-function ArtistSlopeGraph() {
-    var leftMetric = 'jaccard', 
-        rightMetric = 'bm25',
-        artist = 'The Beatles';
+function ArtistSlopeGraph(leftMetric, rightMetric, artist, metrics) {
+    var leftMetric = leftMetric || 'jaccard', 
+        rightMetric = rightMetric || 'bm25',
+        artist = artist || 'The Beatles',
+        metrics = metrics || ['overlap', 'jaccard', 'cosine', 'smoothed_cosine', 'tfidf', 'bm25'];
+
 
 
     function joinLists(left, right, minrank) {
@@ -248,9 +250,6 @@ function ArtistSlopeGraph() {
     }
     setArtist(artist);
 
-
-    var metrics = ['overlap', 'jaccard', 'cosine', 'smoothed_cosine', 'tfidf', 'bm25'];
-
     function setLeftMetric(d) {
         leftMetric = d;
         $(".left .method").text(getDisplayMetric(d));
@@ -264,8 +263,9 @@ function ArtistSlopeGraph() {
         .data(metrics)
         .enter()
         .append("li")
+        .attr("class", function (d) { return d; })
+        .filter(function(d) { return d != "divider"; })
         .append("a")
-        .attr("class", function (d) {return d; })
         .text(getDisplayMetric)
         .on("click", function(d) { setLeftMetric(d); setArtist(artist); });
 
@@ -273,8 +273,9 @@ function ArtistSlopeGraph() {
         .data(metrics)
         .enter()
         .append("li")
+        .attr("class", function (d) { return d; })
+        .filter(function(d) { return d != "divider"; })
         .append("a")
-        .attr("class", function (d) {return d; })
         .text(getDisplayMetric)
         .on("click", function(d) { setRightMetric(d); setArtist(artist); });
 
@@ -285,20 +286,3 @@ function ArtistSlopeGraph() {
             'setArtist' : setArtist,    
             'getArtist' : function() { return artist; }}
 }
-var slopegraph = ArtistSlopeGraph();
-$('#smoothed_slopegraph').on('click', function() {
-    slopegraph.setLeftMetric("cosine");
-    slopegraph.setRightMetric("smoothed_cosine");
-    slopegraph.setArtist("Radiohead");
-    return false;
-});
-
-$('#jaccard_slopegraph').on('click', function() {
-    slopegraph.setLeftMetric("overlap");
-    slopegraph.setRightMetric("jaccard");
-    slopegraph.setArtist("Kanye West");
-    return true;
-});
-
-$('.twitter-typeahead').attr("style", "position: relative");
-
