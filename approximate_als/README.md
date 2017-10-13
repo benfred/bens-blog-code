@@ -1,4 +1,4 @@
-Approximate ALS code test code
+Approximate ALS test code
 =======
 
 This folder has extra code for my post on using [approximate nearest neighbour search for
