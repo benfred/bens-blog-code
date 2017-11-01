@@ -1,9 +1,12 @@
-###Distance Metrics
+### Distance Metrics
 
 Code to compute a list of related bands, using a bunch of different distance
 metrics. Details are in the [blog post](http://www.benfrederickson.com/distance-metrics/).
 
-####Running this code
+Note that this code is terribly slow. A much much faster version is in the lastfm.py example
+in my [implicit recommendation package](https://github.com/benfred/implicit/).
+
+#### Running this code
 
 First you'll need to [download the dataset](http://www.dtic.upf.edu/~ocelma/MusicRecommendationDataset/lastfm-360K.html) and copy the main file over to this directory.
 
