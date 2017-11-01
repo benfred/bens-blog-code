@@ -25,3 +25,12 @@ https://github.com/benfred/implicit/blob/master/examples/lastfm.py#L5
 
 4) Optionally run the batch cpu/gpu test file: test_batch_queries.py which takes the queries 
 generated in step 1 and tests out the GPU implementation of faiss.
+
+
+The query time output is:
+
+![query time](./lastfm50querytime.png)
+
+The index time output is:
+
+![index time](./lastfm50indextime.png)
