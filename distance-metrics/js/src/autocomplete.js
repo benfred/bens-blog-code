@@ -1,7 +1,8 @@
 var preloadedData = preloadedData || {};
 var minAutocompleteUsers = minAutocompleteUsers || 10;
 
-var AUTOCOMPLETE_HOST = 'http://musicautocomplete.benfrederickson.com.s3-website-us-east-1.amazonaws.com/';
+var AUTOCOMPLETE_HOST = "https://s3.amazonaws.com/musicautocomplete.benfrederickson.com/";
+
 
 // initialize typeahead logic
 var artists = new Bloodhound({

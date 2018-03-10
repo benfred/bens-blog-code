@@ -1,4 +1,4 @@
-var API_HOST = 'http://matrixfactorization.benfrederickson.com.s3-website-us-east-1.amazonaws.com/';
+var API_HOST = 'https://s3.amazonaws.com/matrixfactorization.benfrederickson.com/';
 
 var cosineList = new similarArtistList(".cosinelist",
                                        "Arcade Fire",

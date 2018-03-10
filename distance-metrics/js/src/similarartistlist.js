@@ -1,4 +1,4 @@
-var API_HOST = 'http://distancemetrics.benfrederickson.com.s3-website-us-east-1.amazonaws.com/';
+var API_HOST = 'https://s3.amazonaws.com/distancemetrics.benfrederickson.com/';
 
 var tooltip = d3.select("body").append("div")
     .attr("class", "venntooltip");
