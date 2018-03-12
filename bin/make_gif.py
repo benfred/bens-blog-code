@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """ So - I sometimes want to create an animated GIF from a screen recording
-movie.  The ffmpeg commands to do this are frequently beyond me, which is 
+movie.  The ffmpeg commands to do this are frequently beyond me, which is
 why I wrote this script.
 
 The idea here is to take a screencast using QuickTime Player thats bundled
@@ -20,11 +20,13 @@ import argparse
 import os
 import subprocess
 
-import ffvideo
+# https://github.com/mikeboers/PyAV
+# conda install av -c conda-forge
+import av
 
 
 def get_resolution(filename):
-    s = ffvideo.VideoStream(filename)
+    s = av.open(filename).streams.video[0]
     return s.width, s.height
 
 
