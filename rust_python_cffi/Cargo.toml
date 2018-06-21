@@ -1,0 +1,12 @@
+[package]
+name = "c_cpp_demangle"
+version = "0.1.0"
+authors = ["Ben Frederickson <github@benfrederickson.com>"]
+
+[dependencies]
+libc = "0.2.42"
+cpp_demangle = "0.2.9"
+
+[lib]
+name = "c_cpp_demangle"
+crate-type = ["dylib"]
